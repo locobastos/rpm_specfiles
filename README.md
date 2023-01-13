@@ -6,5 +6,6 @@ All my RPM specfiles for any purpose (private, specific, ...)
 
 ## AlmaLinux 8
 
+* certbot-dns-ovh
 * certbot-plugin-gandi
 * S3QL
