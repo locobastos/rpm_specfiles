@@ -9,13 +9,13 @@ Follow this doc to build s3ql for AlmaLinux 8 and Python 3.8.
 To build all dependancies AND s3ql, you will need to install and activate all of this packages/repositories:
 
 ```shell
-dnf install -y rpmdevtools rpm-build git yum-utils python3-rpm-macros
+dnf install -y rpmdevtools git yum-utils python3-rpm-macros
 dnf config-manager --set-enabled powertools
 dnf module enable -y python38-devel
 dnf update -y
 rpmdev-setuptree
-git clone https://github.com/locobastos/s3ql-rpm-al8.git
-cd s3ql-rpm-al8
+git clone https://github.com/locobastos/rpm_specfiles
+cd rpm_specfiles/s3ql
 ```
 
 ## Build

@@ -10,11 +10,11 @@ It's why python3-certbot-dns-ovh is for python3.6 and not newer version of pytho
 To build python3-certbot-dns-ovh:
 
 ```shell
-dnf install -y rpmdevtools rpm-build git yum-utils python3-rpm-macros
-rpmdev-setuptree
 dnf update -y
-git clone https://github.com/locobastos/certbot-dns-ovh
-cd certbot-dns-ovh
+dnf install -y rpmdevtools git yum-utils python3-rpm-macros
+rpmdev-setuptree
+git clone https://github.com/locobastos/rpm_specfiles
+cd rpm_specfiles/certbot-dns-ovh
 
 spectool -g -C ~/rpmbuild/SOURCES/ -f python3-certbot-dns-ovh.spec
 yum-builddep -y python3-certbot-dns-ovh.spec

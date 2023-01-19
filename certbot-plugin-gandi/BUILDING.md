@@ -10,11 +10,11 @@ It's why python3-certbot-plugin-gandi is for python3.6 and not newer version of 
 To build python3-certbot-plugin-gandi:
 
 ```shell
-dnf install -y rpmdevtools rpm-build git yum-utils python3-rpm-macros
-rpmdev-setuptree
 dnf update -y
-git clone https://github.com/locobastos/certbot-plugin-gandi
-cd certbot-plugin-gandi
+dnf install -y rpmdevtools git yum-utils python3-rpm-macros
+rpmdev-setuptree
+git clone https://github.com/locobastos/rpm_specfiles
+cd rpm_specfiles/certbot-plugin-gandi
 
 spectool -g -C ~/rpmbuild/SOURCES/ -f python3-certbot-plugin-gandi.spec
 yum-builddep -y python3-certbot-plugin-gandi.spec
