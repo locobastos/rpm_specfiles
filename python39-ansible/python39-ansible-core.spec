@@ -7,7 +7,7 @@
 
 Name:                python%{python_mver}-%{pypi_name}
 Version:             %{pypi_version}
-Release:             1%{?dist}
+Release:             2%{?dist}
 Summary:             Radically simple IT automation
 
 License:             GPLv3+
@@ -22,6 +22,7 @@ Requires:            python%{python_mver}-Jinja2 = 3.1.2
 Requires:            python%{python_mver}-PyYAML = 6.0
 Requires:            python%{python_mver}-resolvelib = 0.8.1
 Requires:            python3-packaging
+Requires:            sshpass
 
 %description
 Ansible is a radically simple IT automation system. It handles configuration management,
