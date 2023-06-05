@@ -1,11 +1,12 @@
-%define pypi_name    markupsafe
+%define pypi_name    MarkupSafe
 %define pypi_version 2.1.3
 %define python_ver   3.11
+%define rpm_name     markupsafe
 
 %undefine __brp_mangle_shebangs
 %define debug_package %{nil}
 
-Name:                python%{python_ver}-%{pypi_name}
+Name:                python%{python_ver}-%{rpm_name}
 Version:             %{pypi_version}
 Release:             1%{?dist}
 Summary:             Safely add untrusted strings to HTML/XML markup.
@@ -24,7 +25,7 @@ Characters that have special meanings are replaced so that they display as the a
 This mitigates injection attacks, meaning untrusted user input can safely be displayed on a page.
 
 %prep
-%autosetup -n %{pypi_name}-%{pypi_version}
+%autosetup -n %{rpm_name}-%{pypi_version}
 # Fix Python3 shebang
 /usr/bin/pathfix%{python_ver}.py -pni "/usr/bin/python3" .
 
@@ -41,5 +42,5 @@ This mitigates injection attacks, meaning untrusted user input can safely be dis
 %defattr(-,root,root)
 %license LICENSE.rst
 %doc README.rst
-/usr/lib/python%{python_ver}/site-packages/markupsafe
-/usr/lib/python%{python_ver}/site-packages/%{pypi_name}-%{pypi_version}-py*.egg-info
+/usr/lib/python%{python_ver}/site-packages/%{rpm_name}
+/usr/lib/python%{python_ver}/site-packages/%{rpm_name}-%{pypi_version}-py*.egg-info

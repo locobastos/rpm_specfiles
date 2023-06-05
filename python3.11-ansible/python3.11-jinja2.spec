@@ -1,10 +1,11 @@
-%define pypi_name    jinja2
+%define pypi_name    Jinja2
 %define pypi_version 3.1.2
 %define python_ver   3.11
+%define rpm_name     jinja2
 
 %undefine __brp_mangle_shebangs
 
-Name:                python%{python_ver}-%{pypi_name}
+Name:                python%{python_ver}-%{rpm_name}
 Version:             %{pypi_version}
 Release:             1%{?dist}
 Summary:             A small but fast and easy to use stand-alone template engine written in pure python
@@ -23,7 +24,7 @@ Jinja is a sandboxed template engine written in pure Python. It provides a Djang
 and compiles templates into executable python code. It's basically a combination of Django templates and python code.
 
 %prep
-%autosetup -n %{pypi_name}-%{pypi_version}
+%autosetup -n %{rpm_name}-%{pypi_version}
 # Fix Python3 shebang
 /usr/bin/pathfix%{python_ver}.py -pni "/usr/bin/python3" .
 
@@ -39,5 +40,5 @@ and compiles templates into executable python code. It's basically a combination
 %files
 %defattr(-,root,root)
 %doc README.rst
-/usr/lib/python%{python_ver}/site-packages/jinja2
-/usr/lib/python%{python_ver}/site-packages/%{pypi_name}-%{pypi_version}-py*.egg-info
+/usr/lib/python%{python_ver}/site-packages/%{rpm_name}
+/usr/lib/python%{python_ver}/site-packages/%{rpm_name}-%{pypi_version}-py*.egg-info
