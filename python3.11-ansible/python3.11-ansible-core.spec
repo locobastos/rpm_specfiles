@@ -45,7 +45,7 @@ with load balancers easy.
 
 %files
 %defattr(-,root,root)
-%doc README.rst
+%doc README.md
 /usr/bin/ansible
 /usr/bin/ansible-config
 /usr/bin/ansible-connection
