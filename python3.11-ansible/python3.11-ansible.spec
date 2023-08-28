@@ -1,5 +1,5 @@
 %define pypi_name    ansible
-%define pypi_version 8.0.0
+%define pypi_version 8.1.0
 %define python_ver   3.11
 
 %undefine __brp_mangle_shebangs
@@ -16,7 +16,7 @@ Source0:             https://files.pythonhosted.org/packages/source/%(echo %{pyp
 BuildArch:           noarch
 BuildRequires:       python%{python_ver}-devel
 BuildRequires:       python%{python_ver}-setuptools
-Requires:            python%{python_ver}-ansible-core = 2.15.0
+Requires:            python%{python_ver}-ansible-core = 2.15.1
 
 %description
 Ansible is a radically simple IT automation system. It handles configuration management,
