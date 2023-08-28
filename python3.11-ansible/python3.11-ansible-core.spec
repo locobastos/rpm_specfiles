@@ -6,7 +6,7 @@
 
 Name:                python%{python_ver}-%{pypi_name}
 Version:             %{pypi_version}
-Release:             2%{?dist}
+Release:             1%{?dist}
 Summary:             Radically simple IT automation
 
 License:             GPLv3+
