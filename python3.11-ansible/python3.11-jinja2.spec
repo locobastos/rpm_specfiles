@@ -24,7 +24,7 @@ Jinja is a sandboxed template engine written in pure Python. It provides a Djang
 and compiles templates into executable python code. It's basically a combination of Django templates and python code.
 
 %prep
-%autosetup -n %{rpm_name}-%{pypi_version}
+%autosetup -n %{pypi_name}-%{pypi_version}
 # Fix Python3 shebang
 /usr/bin/pathfix%{python_ver}.py -pni "/usr/bin/python3" .
 
@@ -41,4 +41,4 @@ and compiles templates into executable python code. It's basically a combination
 %defattr(-,root,root)
 %doc README.rst
 /usr/lib/python%{python_ver}/site-packages/%{rpm_name}
-/usr/lib/python%{python_ver}/site-packages/%{rpm_name}-%{pypi_version}-py*.egg-info
+/usr/lib/python%{python_ver}/site-packages/%{pypi_name}-%{pypi_version}-py*.egg-info

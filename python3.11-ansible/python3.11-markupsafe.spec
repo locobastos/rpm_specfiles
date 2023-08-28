@@ -25,7 +25,7 @@ Characters that have special meanings are replaced so that they display as the a
 This mitigates injection attacks, meaning untrusted user input can safely be displayed on a page.
 
 %prep
-%autosetup -n %{rpm_name}-%{pypi_version}
+%autosetup -n %{pypi_name}-%{pypi_version}
 # Fix Python3 shebang
 /usr/bin/pathfix%{python_ver}.py -pni "/usr/bin/python3" .
 
@@ -43,4 +43,4 @@ This mitigates injection attacks, meaning untrusted user input can safely be dis
 %license LICENSE.rst
 %doc README.rst
 /usr/lib/python%{python_ver}/site-packages/%{rpm_name}
-/usr/lib/python%{python_ver}/site-packages/%{rpm_name}-%{pypi_version}-py*.egg-info
+/usr/lib/python%{python_ver}/site-packages/%{pypi_name}-%{pypi_version}-py*.egg-info
