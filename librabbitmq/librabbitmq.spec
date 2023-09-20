@@ -1,33 +1,38 @@
 # Fedora spec file for librabbitmq
 #
-# Copyright (c) 2012-2018 Remi Collet
-# License: CC-BY-SA
+# Copyright (c) 2012-2023 Remi Collet
+# License: CC-BY-SA-4.0
 # http://creativecommons.org/licenses/by-sa/4.0/
 #
 # Please, preserve the changelog entries
 #
+%undefine           _disable_source_fetch
+%bcond_without      tests
+%global gh_owner    alanxz
+%global gh_project  rabbitmq-c
+%global libname     librabbitmq
+%global soname      4
 
-Name:      librabbitmq
+Name:      %{libname}
 Summary:   Client library for AMQP
-Version:   0.11.0
+Version:   0.13.0
 Release:   1%{?dist}
 License:   MIT
-URL:       https://github.com/alanxz/rabbitmq-c
-Source0:   https://github.com/alanxz/rabbitmq-c/archive/v%{version}.tar.gz
+URL:       https://github.com/%{gh_owner}/%{gh_project}
+Source0:   https://github.com/%{gh_owner}/%{gh_project}/archive/v%{version}.tar.gz
 
 BuildRequires: gcc
-BuildRequires: cmake > 2.8
-BuildRequires: openssl-devel
+BuildRequires: cmake > 3.12
+BuildRequires: openssl-devel >= 1.1.1
 # For tools
-BuildRequires: popt-devel
+BuildRequires: popt-devel > 1.14
 # For man page
 BuildRequires: xmlto
-
+BuildRequires: make
 
 %description
 This is a C-language AMQP client library for use with AMQP servers
 speaking protocol versions 0-9-1.
-
 
 %package devel
 Summary:    Header files and development libraries for %{name}
@@ -37,10 +42,9 @@ Requires:   %{name}%{?_isa} = %{version}-%{release}
 This package contains the header files and development libraries
 for %{name}.
 
-
 %package tools
 Summary:    Example tools built using the librabbitmq package
-Requires:   %{name}%{?_isa} = %{version}-%{release}
+Requires:   %{name}%{?_isa} = %{version}
 
 %description tools
 This package contains example tools built using %{name}.
@@ -52,9 +56,8 @@ amqp-delete-queue   Delete a queue from an AMQP server
 amqp-get            Get a message from a queue on an AMQP server
 amqp-publish        Publish a message on an AMQP server
 
-
 %prep
-%setup -q -n rabbitmq-c-%{version}
+%setup -q -n %{gh_project}-%{version}
 
 # Copy sources to be included in -devel docs.
 cp -pr examples Examples
@@ -65,50 +68,70 @@ sed -e '/test_basic/d' -i tests/CMakeLists.txt
 %build
 # static lib required for tests
 %cmake \
+  -DBUILD_TOOLS:BOOL=ON \
   -DBUILD_TOOLS_DOCS:BOOL=ON \
-  -DBUILD_STATIC_LIBS:BOOL=ON
+%if %{with tests}
+  -DINSTALL_STATIC_LIBS:BOOL=OFF \
+%else
+  -DBUILD_TESTING:BOOL=OFF \
+  -DBUILD_STATIC_LIBS:BOOL=OFF \
+%endif
+  -S .
 
+%if 0%{?cmake_build:1}
+%cmake_build
+%else
 make %{_smp_mflags}
-
+%endif
 
 %install
-make install DESTDIR="%{buildroot}"
-
-rm %{buildroot}%{_libdir}/%{name}.a
-rm -rf %{buildroot}%{_libdir}/cmake/
-
+%if 0%{?cmake_install:1}
+%cmake_install
+%else
+make install  DESTDIR="%{buildroot}"
+%endif
 
 %check
 : check .pc is usable
-grep @ %{buildroot}%{_libdir}/pkgconfig/%{name}.pc && exit 1
+grep @ %{buildroot}%{_libdir}/pkgconfig/%{libname}.pc && exit 1
+grep %{version} %{buildroot}%{_libdir}/pkgconfig/%{libname}.pc || exit 1
+: check cmake files are usable
+grep static %{buildroot}%{_libdir}/cmake/%{gh_project}/*.cmake && exit 1
 
+%if %{with tests}
 : upstream tests
+%if 0%{?ctest:1}
+%ctest
+%else
 make test
-
+%endif
+%else
+: Tests disabled
+%endif
 
 %files
-%license LICENSE-MIT
-%{_libdir}/%{name}.so.*
-
+%license LICENSE
+%{_libdir}/%{libname}.so.%{soname}
+%{_libdir}/%{libname}.so.%{version}
 
 %files devel
-%doc AUTHORS THANKS TODO *.md
+%doc AUTHORS THANKS *.md
 %doc Examples
-%{_libdir}/%{name}.so
-%{_libdir}/cmake/rabbitmq-c/rabbitmq-c-config-version.cmake
-%{_libdir}/cmake/rabbitmq-c/rabbitmq-c-config.cmake
-%{_libdir}/cmake/rabbitmq-c/rabbitmq-targets-release.cmake
-%{_libdir}/cmake/rabbitmq-c/rabbitmq-targets.cmake
+%{_libdir}/%{libname}.so
 %{_includedir}/amqp*
-%{_libdir}/pkgconfig/%{name}.pc
+%{_includedir}/%{gh_project}
+%{_libdir}/pkgconfig/%{libname}.pc
+%{_libdir}/cmake/%{gh_project}
 
 %files tools
 %{_bindir}/amqp-*
 %doc %{_mandir}/man1/amqp-*.1*
-%doc %{_mandir}/man7/librabbitmq-tools.7*
-
+%doc %{_mandir}/man7/%{libname}-tools.7*
 
 %changelog
+* Wed Sep 20 2023 Bastien MARTIN <bastien.thierry.martin@gmail.com> - 0.13.0-1
+- Update to 0.13.0
+
 * Thu Jan 24 2021 Bastien MARTIN <bastien.thierry.martin@gmail.com> - 0.11.0-1
 - Update to 0.11.0
 
