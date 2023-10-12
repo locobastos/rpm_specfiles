@@ -24,8 +24,8 @@ done
 RPM files are:
 
 ```
-~/rpmbuild/RPMS/noarch/python3.11-ansible-8.4.0-1.el8.noarch.rpm
-~/rpmbuild/RPMS/noarch/python3.11-ansible-core-2.15.4-1.el8.noarch.rpm
+~/rpmbuild/RPMS/noarch/python3.11-ansible-8.5.0-1.el8.noarch.rpm
+~/rpmbuild/RPMS/noarch/python3.11-ansible-core-2.15.5-1.el8.noarch.rpm
 ~/rpmbuild/RPMS/noarch/python3.11-jinja2-3.1.2-1.el8.noarch.rpm
 ~/rpmbuild/RPMS/noarch/python3.11-resolvelib-1.0.1-1.el8.noarch.rpm
 ~/rpmbuild/RPMS/x86_64/python3.11-markupsafe-2.1.3-1.el8.x86_64.rpm
