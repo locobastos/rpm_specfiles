@@ -65,7 +65,7 @@ then
 fi
 
 %files
-%defattr(0644,prometheus,prometheus)
+%defattr(0644,prometheus,prometheus,0644)
 %license LICENSE
 %attr(0644,root,root) /usr/lib/systemd/system/prometheus.service
 %attr(0755,root,root) /usr/bin/prometheus

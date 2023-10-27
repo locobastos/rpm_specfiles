@@ -1,0 +1,54 @@
+#!/bin/bash
+#
+# chkconfig: 2345 85 15
+# description: node_exporter service
+#
+
+# Get function from functions library
+. /etc/init.d/functions
+
+pidfile=/var/run/node_exporter/node_exporter.pid
+lockfile=/var/lock/subsys/node_exporter
+user=node_exporter
+exec=/usr/bin/node_exporter
+
+# Start the service node_exporter
+start() {
+    #$pidfile exist
+    #checkpid $pidfile
+    echo -n "Starting node_exporter server: "
+    daemonize -u $user -p $pidfile -l $lockfile $exec
+    success $"node_exporter server startup"
+    echo
+}
+
+# Restart the service node_exporter
+stop() {
+    echo -n "Stopping node_exporter service: "
+    pkill -TERM -F $pidfile
+    ### Now, delete the lock file ###
+    rm -f $lockfile $pidfile
+    success $"node_exporter server stopped"
+    echo
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status -p $pidfile $exec
+        ;;
+    restart|reload|condrestart)
+        stop
+        start
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit 0
