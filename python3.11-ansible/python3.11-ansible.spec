@@ -1,5 +1,5 @@
 %define pypi_name    ansible
-%define pypi_version 8.6.0
+%define pypi_version 8.6.1
 %define python_ver   3.11
 
 %undefine __brp_mangle_shebangs
