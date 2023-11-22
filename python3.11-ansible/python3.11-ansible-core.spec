@@ -1,5 +1,5 @@
 %define pypi_name    ansible-core
-%define pypi_version 2.15.6
+%define pypi_version 2.16.0
 %define python_ver   3.11
 
 %undefine __brp_mangle_shebangs
