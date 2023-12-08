@@ -13,5 +13,5 @@ rpmbuild -bb ShellCheck.spec
 RPM files is located to:
 
 ```
-~/rpmbuild/RPMS/x86_64/ShellCheck-0.7.1-1.el8.x86_64.rpm
+~/rpmbuild/RPMS/x86_64/ShellCheck-0.7.2-1.el8.x86_64.rpm
 ```
