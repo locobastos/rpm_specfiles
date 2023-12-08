@@ -20,4 +20,4 @@ If you install a AlmaLinux 8 machine and run these commands:
 
 You will install ShellCheck version 0.6.0-3.el8.
 
-The latest version when I wrote this doc (2021/05/06) was ShellCheck 0.7.2.
+The latest version when I wrote this doc (2021/12/06) was ShellCheck 0.8.0.
