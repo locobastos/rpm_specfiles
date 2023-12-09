@@ -41,10 +41,10 @@ Regarding the compilation parameters:
 * OPENSSL is used. On a fully updated CentOS 6, the version of OpenSSL is 1.0.1e-58,
 * GETADDRINFO is used since 1.5.19,
 * PCRE is used from 1.5.19 to 1.7.14,
-* PCRE2 and PCRE2_JIT are used since 1.8.0,
+  * PCRE2 and PCRE2_JIT are used since 1.8.0,
 * LUA 5.3.6 is used from 1.6.0 to 2.0.16/2.1.7/2.2.1 and LUA 5.4.4 is used since 2.0.17/2.1.8/2.2.2/2.3.0,
 * From 1.8.0 to 1.8.3 included, GCC threads are disabled as GCC is too old to compile HAProxy 1.8 with threads,
-* But since 1.8.4, HAProxy added support for gcc < 4.7 and GCC threads are re-enabled,
+  * But since 1.8.4, HAProxy added support for gcc < 4.7 and GCC threads are re-enabled,
 * PROMETHEUS EXPORTER is used since 2.0.0,
 * Using GLIBC RealTime shared library (USE_RT) since 2.0.0 because GLIBC < 2.17.
 
