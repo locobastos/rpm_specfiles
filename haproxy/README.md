@@ -52,4 +52,4 @@ These parameters fill specific needs, feel free to adapt my work.
 
 ## Warnings
 
-HAProxy 1.5.19 is incompatible with OpenSSL >= 1.1.0 due to the API changes.
+HAProxy (from 1.5.19 to 1.6.16 included) is incompatible with OpenSSL >= 1.1.0 due to the API changes.
