@@ -3,7 +3,7 @@
 %endif
 
 Name:               node_exporter
-Version:            1.6.1
+Version:            1.7.0
 Release:            1%{?dist}
 Summary:            Prometheus exporter for machine metrics.
 
@@ -15,6 +15,10 @@ Source2:            node_exporter
 
 BuildArch:          x86_64
 
+%if 0%{?rhel} == 6
+Requires:           daemonize
+%endif
+
 %description
 Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.
 
@@ -23,6 +27,7 @@ Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written
 
 %install
 %{__install} -D --mode=0644 --directory %{buildroot}/usr/bin
+%{__install} -D --mode=0644 --directory %{buildroot}/var/run/node_exporter/
 %{__install} -D --preserve-timestamps --mode=0644 %{_builddir}/node_exporter-%{version}.linux-amd64/node_exporter %{buildroot}/usr/bin/
 
 %if 0%{?rhel} >= 7
@@ -57,6 +62,7 @@ fi
 %files
 %defattr(0755,root,root,0755)
 /usr/bin/node_exporter
+/var/run/node_exporter/
 
 %if 0%{?rhel} >= 7
 %license LICENSE

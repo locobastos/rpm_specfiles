@@ -1,7 +1,7 @@
 %undefine           _disable_source_fetch
 
 Name:               prometheus
-Version:            2.45.1
+Version:            2.45.3
 Release:            1%{?dist}
 Summary:            The Prometheus monitoring system and time series database.
 
